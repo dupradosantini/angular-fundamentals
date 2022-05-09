@@ -5,25 +5,35 @@ import { Component } from '@angular/core';
   styleUrls: ['app.component.scss'],
   template: `
     <div class="app">
-      <h1 [innerHTML]="title"></h1>
-      <img [src]="mander">
-      <input type="text" [value]="name">
-      <div>
-        {{numberOne + numberTwo}} //Angular does the calculation for us, since they are number values in a component.
-      </div>
-      <div>
-        {{ isHappy ? ':)' : ':(' }} //ternary operator
-      </div>
+      <button (click)="handleClick()">
+        Change Name
+      </button>
+      <input
+      type="text"
+      [value]="name"
+      (input)="handleInput($event)"
+      (blur)="handleBlur($event)">
+      <div>{{ name }}</div>
     </div>
   `
 })
 export class AppComponent {
   title: string;
-  numberOne: number = 1;
-  numberTwo: number = 2;
-  isHappy: boolean = true;
-  mander: string = "img/mander.jpg";
+
   name: string = "Luis";
+
+  handleClick(){ //Updates name value, one way data flow makes sure all values get updated.
+    this.name = "Motto";
+  }
+
+  handleInput(event: any){
+    this.name = event.target.value;
+  }
+
+  handleBlur(event: any){ //When there is a change in the textBox, all name values get updated.
+    this.name = event.target.value;
+    console.log(event);
+  }
 
   constructor(){
     this.title = "Ultimate Angular"
