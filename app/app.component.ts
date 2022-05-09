@@ -5,32 +5,23 @@ import { Component } from '@angular/core';
   styleUrls: ['app.component.scss'],
   template: `
     <div class="app">
-      <button (click)="handleClick()">
-        Change Name
-      </button>
-      <input
-        type="text"
-        [ngModel]="name"
-        (ngModelChange)="handleChange($event)">
-      <input
-        type="text"
-        [(ngModel)]="name">
-      <div>{{ name }}</div>
+      <input type="text" [value]="name" (input)="handleChange($event.target.value)">
+      <div *ngIf="name.length > 2">
+        Searching for ... {{ name }}
+      </div>
     </div>
   `
 })
 export class AppComponent {
   title: string;
 
-  name: string = "Luis";
+  name: string = "";
 
-  handleClick(){ //Updates name value, one way data flow makes sure all values get updated.
-    this.name = "Motto";
-  }
 
   handleChange(value: string){
     this.name = value;
   }
+
   constructor(){
     this.title = "Ultimate Angular"
   }
