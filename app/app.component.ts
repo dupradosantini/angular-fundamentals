@@ -9,10 +9,12 @@ import { Component } from '@angular/core';
         Change Name
       </button>
       <input
-      type="text"
-      [value]="name"
-      (input)="handleInput($event)"
-      (blur)="handleBlur($event)">
+        type="text"
+        [ngModel]="name"
+        (ngModelChange)="handleChange($event)">
+      <input
+        type="text"
+        [(ngModel)]="name">
       <div>{{ name }}</div>
     </div>
   `
@@ -26,15 +28,9 @@ export class AppComponent {
     this.name = "Motto";
   }
 
-  handleInput(event: any){
-    this.name = event.target.value;
+  handleChange(value: string){
+    this.name = value;
   }
-
-  handleBlur(event: any){ //When there is a change in the textBox, all name values get updated.
-    this.name = event.target.value;
-    console.log(event);
-  }
-
   constructor(){
     this.title = "Ultimate Angular"
   }
