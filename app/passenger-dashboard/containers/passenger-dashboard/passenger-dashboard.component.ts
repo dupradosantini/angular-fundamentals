@@ -8,24 +8,8 @@ import { Passenger } from "../../models/passenger.interface";
    <div>
       <passenger-count [items]="passengers">
       </passenger-count>
-      <passenger-detail></passenger-detail>
-      <h3> Airline Passengers </h3>
-      <ul>
-        <li *ngFor="let passenger of passengers; let i = index;">
-          <span class="status" [ngClass]="{
-            'checked-in': passenger.checkedIn,
-            'checked-out': !passenger.checkedIn
-            }"></span>
-           {{ i }}: {{passenger.fullname}}
-           <div class="date">
-             Check in date:
-             {{ passenger.checkInDate? (passenger.checkInDate | date: "yMMMd" | uppercase) : "Not Checked In" }}
-           </div>
-           <div class="children">
-             Children: {{ passenger.children?.length || 0}}
-           </div>
-        </li>
-      </ul>
+      <passenger-detail *ngFor="let passenger of passengers;" [detail]="passenger">
+      </passenger-detail>
     </div>
   `
 })
