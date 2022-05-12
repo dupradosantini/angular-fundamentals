@@ -28,15 +28,23 @@ export class PassengerDashboardComponent implements OnInit{
       .subscribe((data: Passenger[]) => this.passengers = data); //synchronous call
   }
   handleRemove(event: Passenger){
-    this.passengers = this.passengers.filter((passenger: Passenger) => passenger.id !== event.id)
+    this.passengerService
+      .removePassenger(event)
+      .subscribe((data: Passenger) => {
+        this.passengers = this.passengers.filter((passenger: Passenger) => passenger.id !== event.id)
+
+      })
   }
   handleEdit(event: Passenger){
-    this.passengers = this.passengers.map((passenger: Passenger) => {
-      if(passenger.id === event.id){//if we are in the correct passenger.
-        passenger = Object.assign({}, passenger, event); //merges changes.
-      }
-      return passenger;
+    this.passengerService
+    .updatePassenger(event)
+    .subscribe((data: Passenger) => {
+      this.passengers = this.passengers.map((passenger: Passenger) => {
+        if(passenger.id === event.id){//if we are in the correct passenger.
+          passenger = Object.assign({}, passenger, event); //merges changes.
+        }
+        return passenger;
+      });
     });
-    console.log(this.passengers);
   }
 }
