@@ -5,14 +5,14 @@
       "fullname": "Stephen trouxasd",
       "checkedIn": true,
       "checkInDate": 1490742000000,
-      "children": null
+      "baggage": ""
     },
     {
       "id": 2,
       "fullname": "Luis Eduardo",
       "checkedIn": false,
       "checkInDate": null,
-      "children": null
+      "baggage": ""
     }
   ]
 }

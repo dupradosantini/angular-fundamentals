@@ -30,9 +30,6 @@ import { Passenger } from "../../models/passenger.interface";
             : "Not Checked In"
         }}
       </div>
-      <div class="children">
-        Children: {{ detail.children?.length || 0 }}
-      </div>
       <button (click)="toggleEdit()">
         {{ editing? "Done" : "Edit"}}
       </button>
