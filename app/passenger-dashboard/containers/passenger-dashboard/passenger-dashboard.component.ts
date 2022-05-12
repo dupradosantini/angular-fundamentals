@@ -23,7 +23,9 @@ export class PassengerDashboardComponent implements OnInit{
   constructor(private passengerService: PassengerDashboardService){//internal binding (this.passengerService = PassengerDashboardService)
   }
   ngOnInit(){
-    this.passengers = this.passengerService.getPassengers(); //synchronous call
+    this.passengerService
+      .getPassengers()
+      .subscribe((data: Passenger[]) => this.passengers = data); //synchronous call
   }
   handleRemove(event: Passenger){
     this.passengers = this.passengers.filter((passenger: Passenger) => passenger.id !== event.id)
