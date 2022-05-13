@@ -18,7 +18,10 @@ import { PassengerDashboardService } from "./passenger-dashboard.service";
 const routes: Routes = [
   {
     path: 'passengers',
-    component: PassengerDashboardComponent
+    children: [
+      {path: '', component: PassengerDashboardComponent},
+      {path: ':id', component: PassengerViewerComponent}
+    ]
   }
 ];
 @NgModule({
