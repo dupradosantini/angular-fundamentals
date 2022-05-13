@@ -12,13 +12,23 @@ import { Baggage } from "../../models/baggage.interface";
       Passenger name:
       <input
         name="fullname"
-        [ngModel]="detail?.fullname"> //[]="string" sets the initial value when its available
-    </div>
+        required
+        #fullname="ngModel"
+        [ngModel]="detail?.fullname">
+        <div *ngIf="fullname.errors?.required && fullname.dirty" class="error">
+          Passenger name is required
+        </div>
+      </div>
     <div>
       Passenger ID:
       <input
         name="id"
-        [ngModel]="detail?.id"> //[]="string" sets the initial value when its available
+        required
+        #id="ngModel"
+        [ngModel]="detail?.id">
+        <div *ngIf="id.errors?.required && id.dirty" class="error">
+          Passenger ID is required
+        </div>
     </div>
 
     <div>
@@ -48,16 +58,6 @@ import { Baggage } from "../../models/baggage.interface";
           *ngFor="let item of baggage"
           [value]="item.key"
           [selected]="item.key === detail?.baggage">
-            {{ item.value }}
-        </option>
-      </select>
-      <!--We can do the same using ngValue, the intentions are not explicit though !-->
-      <select
-        name="baggage"
-        [ngModel]="detail?.baggage">
-        <option
-          *ngFor="let item of baggage"
-          [ngValue]="item.key">
             {{ item.value }}
         </option>
       </select>
