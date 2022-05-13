@@ -11,7 +11,7 @@ import { NotFoundComponent } from "./not-found.component";
 import { PassengerDashboardModule } from "./passenger-dashboard/passenger-dashboard.module";
 
 const routes: Routes = [
-  { path: '', component: HomeComponent, pathMatch: 'full'},
+  { path: '', redirectTo: "passengers", pathMatch: 'full'}, //aumatically forwards to the passengers page.(redirection)
   { path: '**', component: NotFoundComponent}
 ];
 
