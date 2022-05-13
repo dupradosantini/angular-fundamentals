@@ -24,7 +24,7 @@ const routes: Routes = [
   imports:[
     BrowserModule,
     CommonModule,
-    RouterModule.forRoot(routes),
+    RouterModule.forRoot(routes, { useHash: true }), //adding hash to url, supports older browsers. The server has to support this location.
     PassengerDashboardModule
   ],
   bootstrap: [AppComponent]
